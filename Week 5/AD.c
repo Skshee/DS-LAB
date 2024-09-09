@@ -26,6 +26,10 @@ void dequeue(){
     }
     else{
         printf("Returned value is:%d\n",stack2[top2--]);
+        while(top2!=-1)
+        {
+            stack1[++top1]=stack2[top2--];
+        }
     }
 }
 
