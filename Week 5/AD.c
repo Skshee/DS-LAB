@@ -34,8 +34,8 @@ int main()
     int choice;
     int val;
     while (1) {
-        printf("1. Push\n");
-        printf("2. Pop\n");
+        printf("1. Enqueue\n");
+        printf("2. Dequeue\n");
         printf("3. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
