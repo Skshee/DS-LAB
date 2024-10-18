@@ -37,4 +37,55 @@ struct Node* concatenate(struct Node* X1, struct Node* X2) {
 }
 
 // Print the elements of a doubly linked list
-void printList(struct Node
+void printList(struct Node* head) {
+    struct Node* temp = head;
+    while (temp != NULL) {
+        printf("%d ", temp->data); // Print data of each node
+        temp = temp->next; // Move to the next node
+    }
+    printf("\n");
+}
+
+// Create a doubly linked list with 'n' nodes
+struct Node* createList(int n) {
+    struct Node* head = NULL;
+    struct Node* temp = NULL;
+    struct Node* newNode = NULL;
+    int data;
+
+    for (int i = 0; i < n; i++) {
+        printf("Enter data for node %d: ", i + 1);
+        scanf("%d", &data);
+        newNode = createNode(data);
+
+        if (head == NULL) {
+            head = newNode; // Initialize the head if the list is empty
+            temp = head;
+        } else {
+            temp->next = newNode; // Append the new node to the list
+            newNode->prev = temp;
+            temp = temp->next;
+        }
+    }
+
+    return head; // Return the head of the newly created list
+}
+
+int main() {
+    int n1, n2;
+    printf("Enter the number of nodes for the first list: ");
+    scanf("%d", &n1);
+    struct Node* X1 = createList(n1);
+    printf("Enter the number of nodes for the second list: ");
+    scanf("%d", &n2);
+    struct Node* X2 = createList(n2);
+
+    // Concatenate the two lists
+    struct Node* concatenatedList = concatenate(X1, X2);
+    
+    // Print the concatenated list
+    printf("Concatenated list: ");
+    printList(concatenatedList);
+
+    return 0;
+}
