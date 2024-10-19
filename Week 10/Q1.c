@@ -171,11 +171,11 @@ void printDepth(struct Node* root) {
 }
 
 // Function to print the ancestors of a given element
-int printAncestorsHelper(struct Node* root, int value) {
+int printAncestors(struct Node* root, int value) {
     if (root == NULL) return 0;
     if (root->data == value) return 1;
 
-    if (printAncestorsHelper(root->left, value) || printAncestorsHelper(root->right, value)) {
+    if (printAncestors(root->left, value) || printAncestors(root->right, value)) {
         printf("%d ", root->data);
         return 1;
     }
@@ -183,9 +183,9 @@ int printAncestorsHelper(struct Node* root, int value) {
     return 0;
 }
 
-void printAncestors(struct Node* root, int value) {
+void printAncestorsWrapper(struct Node* root, int value) {
     printf("Ancestors of %d are: ", value);
-    if (!printAncestorsHelper(root, value)) {
+    if (!printAncestors(root, value)) {
         printf("No ancestors found (element may not be present).\n");
     } else {
         printf("\n");
@@ -288,7 +288,7 @@ int main() {
             case 7:
                 printf("Enter the node value to find its ancestors: ");
                 scanf("%d", &val);
-                printAncestors(root, val);
+                printAncestorsWrapper(root, val);
                 break;
 
             case 8:
